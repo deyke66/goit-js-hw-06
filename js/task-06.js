@@ -6,10 +6,17 @@ function onInputRefClassChange(event) {
     const maxLength = inputRef.dataset.length;
     let inputValue = event.currentTarget.value.length;
 
-    if (maxLength > inputValue) {
-        inputRef.classList.add('invalid');
+    
+    if (Number(maxLength) === Number(inputValue)) {
+        inputRef.classList.add('valid');
+        if (inputRef.classList.contains('invalid')) {
+            inputRef.classList.remove('invalid')
+        }
+
     } else {
-        inputRef.classList.remove('invalid')
-        inputRef.classList.add('valid')
+        inputRef.classList.add('invalid');
+        if (inputRef.classList.contains('valid')) {
+            inputRef.classList.remove('valid')
+        }
     }
 }
