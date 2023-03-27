@@ -9,20 +9,27 @@ const deleteButton = document.querySelector('button[data-destroy]');
 const inputRef = document.querySelector('#controls > input');
 const boxSpace = document.querySelector('#boxes');
 
+
 createButton.addEventListener('click', onButtonCreate);
 deleteButton.addEventListener('click', onButtonDelete)
 
+
 function onButtonCreate() {
-  let widhtValue = 20;
-  let heightValue = 20;
   const userQuantity = inputRef.value
+  let sizes = 20;
+  const array = [];
   for (let i = 1; i <= Number(userQuantity); i += 1) {
     const colorValue = getRandomHexColor()
-    widhtValue += 10
-    heightValue += 10
-    boxSpace.innerHTML += `<div style ="width: ${widhtValue}px; height: ${heightValue}px; background-color: ${colorValue}; margin-bottom: 10px"></div>`
+    const divEl = document.createElement('div');
+    sizes += 10;
+    divEl.style.width = `${sizes}px`
+    divEl.style.height = `${sizes}px`
+    divEl.style.backgroundColor = `${colorValue}`
+    divEl.style.marginBottom = `10px`
+    array.push(divEl)
   }
   
+  boxSpace.append(...array)
 }
 
 function onButtonDelete() {
